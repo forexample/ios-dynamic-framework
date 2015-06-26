@@ -91,20 +91,21 @@ do_call([
     'CMAKE_PREFIX_PATH={}'.format(os.path.join(cwd, '_3rdParty', cmd_args.toolchain))
 ])
 
-if os.path.exists('_builds'):
-  shutil.rmtree('_builds')
+if False: # TODO
+  if os.path.exists('_builds'):
+    shutil.rmtree('_builds')
 
-do_call([
-    'build.py',
-    '--home',
-    'Baz',
-    '--toolchain',
-    cmd_args.toolchain,
-    '--verbose',
-    '--config',
-    'Release',
-    '--fwd',
-    'FRAMEWORK_DIR={}'.format(
-        os.path.join(cwd, '_framework', cmd_args.toolchain)
-    )
-])
+  do_call([
+      'build.py',
+      '--home',
+      'Baz',
+      '--toolchain',
+      cmd_args.toolchain,
+      '--verbose',
+      '--config',
+      'Release',
+      '--fwd',
+      'FRAMEWORK_DIR={}'.format(
+          os.path.join(cwd, '_framework', cmd_args.toolchain)
+      )
+  ])
