@@ -7,13 +7,6 @@ find_package(Foo CONFIG REQUIRED)
 add_library(bar SHARED bar.cpp)
 target_link_libraries(bar PUBLIC Foo::foo Boo::boo)
 
-set_target_properties(
-    bar
-    PROPERTIES
-    INSTALL_NAME_DIR "@rpath/bar.framework"
-    INSTALL_RPATH "@executable_path/Frameworks;@loader_path/Frameworks"
-)
-
 set(config_install_dir "lib/cmake/${PROJECT_NAME}")
 set(include_install_dir "include")
 
