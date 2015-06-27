@@ -7,7 +7,7 @@ import subprocess
 import sys
 
 parser = argparse.ArgumentParser(description="Testing script")
-parser.add_argument('--toolchain', help='Toolchain')
+parser.add_argument('--toolchain', help='Toolchain', required=True)
 cmd_args = parser.parse_args()
 
 cwd = os.getcwd()
