@@ -7,6 +7,22 @@ find_package(Foo CONFIG REQUIRED)
 add_library(bar SHARED bar.cpp)
 target_link_libraries(bar PUBLIC Foo::foo Boo::boo)
 
+include(GenerateExportHeader)
+generate_export_header(bar)
+
+target_include_directories(
+    bar PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
+)
+
+set_target_properties(
+    bar
+    PROPERTIES
+    CXX_VISIBILITY_PRESET hidden
+    VISIBILITY_INLINES_HIDDEN ON
+    XCODE_ATTRIBUTE_GCC_INLINES_ARE_PRIVATE_EXTERN YES
+    XCODE_ATTRIBUTE_GCC_SYMBOLS_PRIVATE_EXTERN YES
+)
+
 set(config_install_dir "lib/cmake/${PROJECT_NAME}")
 set(include_install_dir "include")
 
@@ -37,6 +53,11 @@ install(
 install(
     FILES "${project_config}" "${version_config}"
     DESTINATION "${config_install_dir}"
+)
+
+install(
+    FILES "${CMAKE_CURRENT_BINARY_DIR}/bar_export.h"
+    DESTINATION "${include_install_dir}"
 )
 
 install(
