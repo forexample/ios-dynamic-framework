@@ -14,6 +14,8 @@
 		0F1DEA1F1B45F12300441C67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F1DEA1D1B45F12300441C67 /* Main.storyboard */; };
 		0F1DEA211B45F12300441C67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F1DEA201B45F12300441C67 /* Images.xcassets */; };
 		0F1DEA241B45F12300441C67 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1DEA221B45F12300441C67 /* LaunchScreen.xib */; };
+		0FD25B1C1B46E45200EC64CA /* bar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD25B1B1B46E45200EC64CA /* bar.framework */; };
+		0FD25B1D1B46E45800EC64CA /* bar.framework in Resources */ = {isa = PBXBuildFile; fileRef = 0FD25B1B1B46E45200EC64CA /* bar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,7 @@
 		0F1DEA1E1B45F12300441C67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F1DEA201B45F12300441C67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0F1DEA231B45F12300441C67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		0FD25B1B1B46E45200EC64CA /* bar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = bar.framework; path = "../_framework/ios-8-2/bar.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FD25B1C1B46E45200EC64CA /* bar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +48,7 @@
 		0F1DEA041B45F12300441C67 = {
 			isa = PBXGroup;
 			children = (
+				0FD25B1B1B46E45200EC64CA /* bar.framework */,
 				0F1DEA0F1B45F12300441C67 /* DynamicFrameworkUsageExample */,
 				0F1DEA0E1B45F12300441C67 /* Products */,
 			);
@@ -139,6 +144,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FD25B1D1B46E45800EC64CA /* bar.framework in Resources */,
 				0F1DEA1F1B45F12300441C67 /* Main.storyboard in Resources */,
 				0F1DEA241B45F12300441C67 /* LaunchScreen.xib in Resources */,
 				0F1DEA211B45F12300441C67 /* Images.xcassets in Resources */,
@@ -263,8 +269,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"../_framework/ios-8-2",
+				);
 				INFOPLIST_FILE = DynamicFrameworkUsageExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -273,8 +283,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"../_framework/ios-8-2",
+				);
 				INFOPLIST_FILE = DynamicFrameworkUsageExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
