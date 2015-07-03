@@ -8,6 +8,11 @@ import sys
 
 parser = argparse.ArgumentParser(description="Testing script")
 parser.add_argument('--toolchain', help='Toolchain', required=True)
+parser.add_argument(
+    '--device',
+    action='store_true',
+    help='Build framework for device only'
+)
 cmd_args = parser.parse_args()
 
 cwd = os.getcwd()
@@ -77,6 +82,10 @@ shutil.rmtree('_install')
 if os.path.exists('_builds'):
   shutil.rmtree('_builds')
 
+framework_opt = '--framework'
+if cmd_args.device:
+  framework_opt = '--framework-device'
+
 do_call([
     'build.py',
     '--home',
@@ -84,7 +93,7 @@ do_call([
     '--toolchain',
     cmd_args.toolchain,
     '--verbose',
-    '--framework',
+    framework_opt,
     '--config',
     'Release',
     '--fwd',
