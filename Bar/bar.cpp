@@ -4,8 +4,10 @@
 void foo();
 void boo();
 
-void BAR_EXPORT bar() {
+std::string BAR_EXPORT bar() {
   foo();
   boo();
-  std::cout << "Hello from bar" << std::endl;
+  std::string result("Hello from bar");
+  std::cout << result << std::endl;
+  return result;
 }
