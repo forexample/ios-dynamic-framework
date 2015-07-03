@@ -10,7 +10,7 @@
 		0F1DEA131B45F12300441C67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1DEA121B45F12300441C67 /* main.m */; };
 		0F1DEA161B45F12300441C67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1DEA151B45F12300441C67 /* AppDelegate.m */; };
 		0F1DEA191B45F12300441C67 /* DynamicFrameworkUsageExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F1DEA171B45F12300441C67 /* DynamicFrameworkUsageExample.xcdatamodeld */; };
-		0F1DEA1C1B45F12300441C67 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1DEA1B1B45F12300441C67 /* ViewController.m */; };
+		0F1DEA1C1B45F12300441C67 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0F1DEA1B1B45F12300441C67 /* ViewController.mm */; };
 		0F1DEA1F1B45F12300441C67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F1DEA1D1B45F12300441C67 /* Main.storyboard */; };
 		0F1DEA211B45F12300441C67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F1DEA201B45F12300441C67 /* Images.xcassets */; };
 		0F1DEA241B45F12300441C67 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1DEA221B45F12300441C67 /* LaunchScreen.xib */; };
@@ -24,7 +24,7 @@
 		0F1DEA151B45F12300441C67 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0F1DEA181B45F12300441C67 /* DynamicFrameworkUsageExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DynamicFrameworkUsageExample.xcdatamodel; sourceTree = "<group>"; };
 		0F1DEA1A1B45F12300441C67 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0F1DEA1B1B45F12300441C67 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0F1DEA1B1B45F12300441C67 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		0F1DEA1E1B45F12300441C67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0F1DEA201B45F12300441C67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0F1DEA231B45F12300441C67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 				0F1DEA141B45F12300441C67 /* AppDelegate.h */,
 				0F1DEA151B45F12300441C67 /* AppDelegate.m */,
 				0F1DEA1A1B45F12300441C67 /* ViewController.h */,
-				0F1DEA1B1B45F12300441C67 /* ViewController.m */,
+				0F1DEA1B1B45F12300441C67 /* ViewController.mm */,
 				0F1DEA1D1B45F12300441C67 /* Main.storyboard */,
 				0F1DEA201B45F12300441C67 /* Images.xcassets */,
 				0F1DEA221B45F12300441C67 /* LaunchScreen.xib */,
@@ -154,7 +154,7 @@
 			files = (
 				0F1DEA161B45F12300441C67 /* AppDelegate.m in Sources */,
 				0F1DEA131B45F12300441C67 /* main.m in Sources */,
-				0F1DEA1C1B45F12300441C67 /* ViewController.m in Sources */,
+				0F1DEA1C1B45F12300441C67 /* ViewController.mm in Sources */,
 				0F1DEA191B45F12300441C67 /* DynamicFrameworkUsageExample.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
