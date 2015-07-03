@@ -91,7 +91,7 @@ do_call([
     'CMAKE_PREFIX_PATH={}'.format(os.path.join(cwd, '_3rdParty', cmd_args.toolchain))
 ])
 
-if False: # TODO
+if not cmd_args.toolchain.startswith('ios'): # TODO (fix iOS)
   if os.path.exists('_builds'):
     shutil.rmtree('_builds')
 
