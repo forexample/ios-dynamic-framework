@@ -8,6 +8,10 @@
 
 #import "ViewController.h"
 
+#include <string>
+
+std::string bar();
+
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *button;
 @end
@@ -17,6 +21,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
+
+  NSString* nsstring = [NSString stringWithUTF8String:bar().c_str()];
+  [_button setTitle:nsstring forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
