@@ -23,11 +23,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1R-od-v0U">
+                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7dQ-gz-aOt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6mE-Au-bzn"/>
+                            <constraint firstAttribute="centerX" secondItem="f1R-od-v0U" secondAttribute="centerX" id="He0-8p-0eY"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7dQ-gz-aOt" secondAttribute="bottom" constant="20" id="T80-Kh-pJo"/>
+                            <constraint firstAttribute="centerY" secondItem="f1R-od-v0U" secondAttribute="centerY" id="p6q-aX-smn"/>
                             <constraint firstItem="7dQ-gz-aOt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="wdy-hs-mfM"/>
                         </constraints>
                     </view>
