@@ -7,7 +7,7 @@ void boo();
 std::string BAR_EXPORT bar() {
   foo();
   boo();
-  std::string result("Hello from bar");
+  std::string result("Hello from bar.framework!");
   std::cout << result << std::endl;
   return result;
 }
