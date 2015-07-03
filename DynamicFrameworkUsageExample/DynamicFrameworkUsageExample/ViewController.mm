@@ -18,6 +18,11 @@ std::string bar();
 
 @implementation ViewController
 
+- (IBAction)pushButton {
+  NSString* url = @"https://github.com/forexample/ios-dynamic-framework";
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
