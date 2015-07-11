@@ -55,3 +55,7 @@ Exclude simulator architectures (i386, x86_64) from framework by adding extra op
 
 Build, archive and submit application.
 
+### More
+
+* [Hunter (package manager)](https://github.com/ruslo/hunter)
+* [Polly (toolchains)](https://github.com/ruslo/polly)
