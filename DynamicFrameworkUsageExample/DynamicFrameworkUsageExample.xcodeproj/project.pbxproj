@@ -15,8 +15,21 @@
 		0F1DEA211B45F12300441C67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F1DEA201B45F12300441C67 /* Images.xcassets */; };
 		0F1DEA241B45F12300441C67 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1DEA221B45F12300441C67 /* LaunchScreen.xib */; };
 		0FD25B1C1B46E45200EC64CA /* bar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FD25B1B1B46E45200EC64CA /* bar.framework */; };
-		0FD25B1D1B46E45800EC64CA /* bar.framework in Resources */ = {isa = PBXBuildFile; fileRef = 0FD25B1B1B46E45200EC64CA /* bar.framework */; };
+		0FD9D1881B514F30009D39AB /* bar.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0FD25B1B1B46E45200EC64CA /* bar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0FD9D1871B514F25009D39AB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0FD9D1881B514F30009D39AB /* bar.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0F1DEA0D1B45F12300441C67 /* DynamicFrameworkUsageExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicFrameworkUsageExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +110,7 @@
 				0F1DEA091B45F12300441C67 /* Sources */,
 				0F1DEA0A1B45F12300441C67 /* Frameworks */,
 				0F1DEA0B1B45F12300441C67 /* Resources */,
+				0FD9D1871B514F25009D39AB /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -144,7 +158,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FD25B1D1B46E45800EC64CA /* bar.framework in Resources */,
 				0F1DEA1F1B45F12300441C67 /* Main.storyboard in Resources */,
 				0F1DEA241B45F12300441C67 /* LaunchScreen.xib in Resources */,
 				0F1DEA211B45F12300441C67 /* Images.xcassets in Resources */,
