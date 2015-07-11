@@ -13,8 +13,7 @@ Usage:
 
 * Open your Xcode project
 * Add framework to the project: "File" -> "Add Files to ..." -> *choose bar.framework*
-* Copy framework: "Build Phases" -> "Copy Bundle Resources" -> "+" -> *choose bar.framework* -> "Add"
-* Modify application RPATH: "Build Settings" -> "Runpath Search Paths" -> "+" -> "@executable_path"
+* Copy framework: "Build Phases" -> "New Copy Files Phase" -> Set "Destination" to "Frameworks" -> "+" -> *choose bar.framework* -> "Add"
 
 ### Visibility
 
