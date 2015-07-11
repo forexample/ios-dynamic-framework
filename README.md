@@ -1,6 +1,7 @@
-* static libraries: `foo`, `boo`
-* shared library `bar` (depends on `foo` and `boo`) -> Framework
-* application `baz` load shared library `bar` (*not working for iOS, TODO*)
+* Static libraries: `foo`, `boo`
+* Shared library `bar` (depends on `foo` and `boo`) -> Framework
+* Application `baz` load shared library `bar` (*not working for iOS, TODO*)
+* Native Xcode iOS project `DynamicFrameworkUsageExample` use `bar.framework`
 
 Usage:
 ```bash
@@ -43,3 +44,15 @@ Explicit export (export only BAR_EXPORT, all other symbols are hidden):
 __Z3foov:
 __Z3boov:
 ```
+
+### App Store Submittion
+
+Exclude simulator architectures (i386, x86_64) from framework by adding extra option `--device` (this will add `--framework-device` to `build.py` script) and open Xcode project:
+
+```bash
+> ./jenkins.py --device --toolchain ios-8-2
+> open DynamicFrameworkUsageExample/DynamicFrameworkUsageExample.xcodeproj
+```
+
+Build, archive and submit application.
+
