@@ -17,6 +17,8 @@ Usage:
 
 ### Visibility
 
+#### Default
+
 Export all symbols (default):
 
 ```bash
@@ -26,6 +28,20 @@ Export all symbols (default):
 ... T __Z3boov # from static library boo
 ... T __Z3foov # from static library foo
 ```
+
+#### File with exports
+
+Exported symbols can be listed explicitly in file using `-exported_symbols_list` option:
+
+```bash
+> cat Bar/libbar.exports
+__Z3barv
+> ./jenkins.py --toolchain ios-8-2 --export-file
+> nm -gU _framework/ios-8-2/bar.framework/bar
+... T __Z3barv
+```
+
+#### Toolchain
 
 Explicit export (export only BAR_EXPORT, all other symbols are hidden):
 
