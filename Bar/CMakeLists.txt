@@ -7,6 +7,17 @@ find_package(Foo CONFIG REQUIRED)
 add_library(bar SHARED bar.cpp)
 target_link_libraries(bar PUBLIC Foo::foo Boo::boo)
 
+if(EXPORT_FILE)
+  if(APPLE)
+    target_link_libraries(
+        bar
+        PRIVATE
+        "-Wl,-exported_symbols_list"
+        "${CMAKE_CURRENT_LIST_DIR}/libbar.exports"
+    )
+  endif()
+endif()
+
 include(GenerateExportHeader)
 generate_export_header(bar)
 

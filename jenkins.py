@@ -13,6 +13,11 @@ parser.add_argument(
     action='store_true',
     help='Build framework for device only'
 )
+parser.add_argument(
+    '--export-file',
+    action='store_true',
+    help='Use extra file with exports symbols'
+)
 cmd_args = parser.parse_args()
 
 cwd = os.getcwd()
@@ -86,6 +91,10 @@ framework_opt = '--framework'
 if cmd_args.device:
   framework_opt = '--framework-device'
 
+export_file = 'NO'
+if cmd_args.export_file:
+  export_file = 'YES'
+
 do_call([
     'build.py',
     '--home',
@@ -97,7 +106,8 @@ do_call([
     '--config',
     'Release',
     '--fwd',
-    'CMAKE_PREFIX_PATH={}'.format(os.path.join(cwd, '_3rdParty', cmd_args.toolchain))
+    'CMAKE_PREFIX_PATH={}'.format(os.path.join(cwd, '_3rdParty', cmd_args.toolchain)),
+    'EXPORT_FILE={}'.format(export_file)
 ])
 
 if not cmd_args.toolchain.startswith('ios'): # TODO (fix iOS)
