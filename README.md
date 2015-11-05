@@ -15,6 +15,8 @@ Usage:
 * Add framework to the project: "File" -> "Add Files to ..." -> *choose bar.framework*
 * Copy framework: "Build Phases" -> "New Copy Files Phase" -> Set "Destination" to "Frameworks" -> "+" -> *choose bar.framework* -> "Add"
 
+*Note*: dynamic frameworks available since iOS 8.0 (Xcode 6), see [New Features in Xcode 6](https://developer.apple.com/library/prerelease/ios/documentation/DeveloperTools/Conceptual/WhatsNewXcode/Articles/xcode_6_0.html#//apple_ref/doc/uid/TP40014509-SW14).
+
 ### Visibility
 
 #### Default
