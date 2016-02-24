@@ -12,10 +12,16 @@ Usage:
 ### Adding framework to Xcode project
 
 * Open your Xcode project
+* Remove old `bar.framework` link if it's left from previous build
 * Add framework to the project: "File" -> "Add Files to ..." -> *choose bar.framework*
 * Copy framework: "Build Phases" -> "New Copy Files Phase" -> Set "Destination" to "Frameworks" -> "+" -> *choose bar.framework* -> "Add"
+* Modify `Search Paths -> Framework Search Paths` to relative path accodring to toolchain name you're using. E.g. `../_framework/ios-8-4` if you are using `--toolchain ios-8-4` (if it's not set by Xcode automatically)
 
 *Note*: dynamic frameworks available since iOS 8.0 (Xcode 6), see [New Features in Xcode 6](https://developer.apple.com/library/prerelease/ios/documentation/DeveloperTools/Conceptual/WhatsNewXcode/Articles/xcode_6_0.html#//apple_ref/doc/uid/TP40014509-SW14).
+
+### Headers
+
+Project `Bar` installs `bar.hpp` header to `<install-prefix>/include/bar/bar.hpp`. So `bar.hpp` can be included by C++ directive `#include <bar/bar.hpp>` if used in a plain non-framework configuration. For frameworks location will be `bar.framework/Headers/bar.hpp` and can be included by the same C++ directive `#include <bar/bar.hpp>`.
 
 ### Visibility
 
