@@ -4,7 +4,7 @@ project(Bar VERSION 1.2.3)
 find_package(Boo CONFIG REQUIRED)
 find_package(Foo CONFIG REQUIRED)
 
-add_library(bar SHARED bar.cpp)
+add_library(bar SHARED bar.cpp bar.hpp)
 target_link_libraries(bar PUBLIC Foo::foo Boo::boo)
 
 if(EXPORT_FILE)
@@ -60,6 +60,8 @@ install(
     RUNTIME DESTINATION "bin"
     INCLUDES DESTINATION "${include_install_dir}"
 )
+
+install(FILES "bar.hpp" DESTINATION "include/bar")
 
 install(
     FILES "${project_config}" "${version_config}"

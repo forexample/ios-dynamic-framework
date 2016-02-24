@@ -10,7 +10,7 @@
 
 #include <string>
 
-std::string bar();
+#include <bar/bar.hpp>
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *button;
