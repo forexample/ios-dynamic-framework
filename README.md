@@ -9,6 +9,13 @@ Usage:
 > ls _framework/*/bar.framework
 ```
 
+Polly scripts should be in PATH:
+```
+> git clone https://github.com/ruslo/polly
+> export PATH=`pwd`/polly/bin:$PATH
+> which build.py
+```
+
 ### Adding framework to Xcode project
 
 * Open your Xcode project
