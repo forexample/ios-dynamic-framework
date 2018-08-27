@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 project(Boo VERSION 1.2.3)
 
 add_library(boo boo.cpp)

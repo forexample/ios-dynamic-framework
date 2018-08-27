@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 project(Foo VERSION 1.2.3)
 
 add_library(foo foo.cpp)
