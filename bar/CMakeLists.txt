@@ -4,7 +4,13 @@ project(bar VERSION 1.2.3)
 find_package(boo CONFIG REQUIRED)
 find_package(foo CONFIG REQUIRED)
 
-add_library(bar bar.cpp bar.hpp)
+set(
+    export_header
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}/BAR_EXPORT.h"
+)
+
+set(public_headers bar.hpp ${export_header})
+add_library(bar bar.cpp ${public_headers})
 target_link_libraries(bar PUBLIC foo::foo boo::boo)
 
 add_executable(roo roo.cpp)
@@ -21,10 +27,6 @@ if(EXPORT_FILE)
   endif()
 endif()
 
-set(
-    export_header
-    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}/BAR_EXPORT.h"
-)
 include(GenerateExportHeader)
 generate_export_header(bar EXPORT_FILE_NAME ${export_header})
 
@@ -43,6 +45,20 @@ set_target_properties(
     XCODE_ATTRIBUTE_GCC_INLINES_ARE_PRIVATE_EXTERN YES
     XCODE_ATTRIBUTE_GCC_SYMBOLS_PRIVATE_EXTERN YES
 )
+
+set(ios_framework FALSE)
+if(IOS AND BUILD_SHARED_LIBS)
+  set(ios_framework TRUE)
+endif()
+
+if(ios_framework)
+  set_target_properties(
+      bar
+      PROPERTIES
+      FRAMEWORK TRUE
+      PUBLIC_HEADER "${public_headers}"
+  )
+endif()
 
 # * CMAKE_INSTALL_LIBDIR
 # * CMAKE_INSTALL_BINDIR
@@ -77,19 +93,22 @@ install(
     LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
     ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
     RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
+    FRAMEWORK DESTINATION "."
     INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
 )
 
-install(FILES "bar.hpp" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}")
+if(ios_framework)
+  # Headers are part of the installed framework
+else()
+  install(
+      FILES ${public_headers}
+      DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}"
+  )
+endif()
 
 install(
     FILES "${project_config}" "${version_config}"
     DESTINATION "${config_install_dir}"
-)
-
-install(
-    FILES "${export_header}"
-    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}"
 )
 
 install(
