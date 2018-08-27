@@ -84,7 +84,9 @@ Explicit export (export only BAR_EXPORT, all other symbols are hidden):
   > nm -gU _framework/ios-8-2-arm64-hid/bar.framework/bar
   ... T __Z3barv # only bar visible
 
-*(achieved by adding ``-fvisibility=hidded`` and ``-fvisibility-inlines-hidded`` to ``CMAKE_CXX_FLAGS`` in toolchain)*
+.. note::
+
+  Achieved by adding ``-fvisibility=hidded`` and ``-fvisibility-inlines-hidded`` to ``CMAKE_CXX_FLAGS`` in toolchain
 
 ``foo`` and ``boo`` exist but not visible:
 
