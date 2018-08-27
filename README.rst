@@ -1,7 +1,7 @@
 * Static libraries: ``foo``, ``boo``. Represent third party code.
 * Shared framework ``bar``. Depends on ``foo`` and ``boo``. Represent developer's code.
-* Application ``baz`` load shared framework ``bar``. Represent CMake + Xcode user code.
-* Native Xcode iOS project ``DynamicFrameworkUsageExample`` use ``bar.framework``. Represent native Xcode (no CMake) user code.
+* Application ``baz`` load shared framework ``bar``. Represent CMake + Xcode user's code.
+* Native Xcode iOS project ``DynamicFrameworkUsageExample`` use ``bar.framework``. Represent native Xcode (no CMake) user's code.
 
 Requirements
 ------------
@@ -60,7 +60,8 @@ Export all symbols (default):
   ... T __Z3boov # from static library boo
   ... T __Z3foov # from static library foo
 
-#### File with exports
+File with exports
+=================
 
 Exported symbols can be listed explicitly in file using ``-exported_symbols_list`` option:
 
