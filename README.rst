@@ -65,7 +65,7 @@ File with exports
 
 Exported symbols can be listed explicitly in file using ``-exported_symbols_list`` option:
 
-code-block:: none
+.. code-block:: none
 
   > cat Bar/libbar.exports
   __Z3barv
