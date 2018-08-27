@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(foo VERSION 1.2.3)
 
-add_library(foo foo.cpp)
+add_library(foo foo.cpp foo.hpp)
 
 # * CMAKE_INSTALL_LIBDIR
 # * CMAKE_INSTALL_BINDIR
@@ -51,3 +51,5 @@ install(
     NAMESPACE "${namespace}"
     DESTINATION "${config_install_dir}"
 )
+
+install(FILES foo.hpp DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")

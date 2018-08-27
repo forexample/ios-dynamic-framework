@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(boo VERSION 1.2.3)
 
-add_library(boo boo.cpp)
+add_library(boo boo.cpp boo.hpp)
 
 # * CMAKE_INSTALL_LIBDIR
 # * CMAKE_INSTALL_BINDIR
@@ -51,3 +51,5 @@ install(
     NAMESPACE "${namespace}"
     DESTINATION "${config_install_dir}"
 )
+
+install(FILES boo.hpp DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")

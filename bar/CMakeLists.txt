@@ -1,11 +1,14 @@
 cmake_minimum_required(VERSION 3.5)
-project(Bar VERSION 1.2.3)
+project(bar VERSION 1.2.3)
 
-find_package(Boo CONFIG REQUIRED)
-find_package(Foo CONFIG REQUIRED)
+find_package(boo CONFIG REQUIRED)
+find_package(foo CONFIG REQUIRED)
 
-add_library(bar SHARED bar.cpp bar.hpp)
-target_link_libraries(bar PUBLIC Foo::foo Boo::boo)
+add_library(bar bar.cpp bar.hpp)
+target_link_libraries(bar PUBLIC foo::foo boo::boo)
+
+add_executable(roo roo.cpp)
+target_link_libraries(roo PUBLIC bar)
 
 if(EXPORT_FILE)
   if(APPLE)
@@ -18,11 +21,18 @@ if(EXPORT_FILE)
   endif()
 endif()
 
+set(
+    export_header
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}/BAR_EXPORT.h"
+)
 include(GenerateExportHeader)
-generate_export_header(bar)
+generate_export_header(bar EXPORT_FILE_NAME ${export_header})
 
 target_include_directories(
-    bar PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
+    bar
+    PUBLIC
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/..>"
 )
 
 set_target_properties(
@@ -34,14 +44,16 @@ set_target_properties(
     XCODE_ATTRIBUTE_GCC_SYMBOLS_PRIVATE_EXTERN YES
 )
 
-set(config_install_dir "lib/cmake/${PROJECT_NAME}")
-set(include_install_dir "include")
+# * CMAKE_INSTALL_LIBDIR
+# * CMAKE_INSTALL_BINDIR
+# * CMAKE_INSTALL_INCLUDEDIR
+include(GNUInstallDirs)
 
+set(config_install_dir "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
 set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
-
 set(version_config "${generated_dir}/${PROJECT_NAME}ConfigVersion.cmake")
 set(project_config "${generated_dir}/${PROJECT_NAME}Config.cmake")
-set(targets_export_name "${PROJECT_NAME}Targets")
+set(TARGETS_EXPORT_NAME "${PROJECT_NAME}Targets")
 set(namespace "${PROJECT_NAME}::")
 
 include(CMakePackageConfigHelpers)
@@ -50,18 +62,25 @@ write_basic_package_version_file(
     "${version_config}" COMPATIBILITY SameMajorVersion
 )
 
-configure_file("cmake/Config.cmake.in" "${project_config}" @ONLY)
+# Use:
+# * TARGETS_EXPORT_NAME
+# * PROJECT_NAME
+configure_package_config_file(
+    "Config.cmake.in"
+    "${project_config}"
+    INSTALL_DESTINATION "${config_install_dir}"
+)
 
 install(
     TARGETS bar
-    EXPORT "${targets_export_name}"
-    LIBRARY DESTINATION "lib"
-    ARCHIVE DESTINATION "lib"
-    RUNTIME DESTINATION "bin"
-    INCLUDES DESTINATION "${include_install_dir}"
+    EXPORT "${TARGETS_EXPORT_NAME}"
+    LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+    ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+    RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
+    INCLUDES DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
 )
 
-install(FILES "bar.hpp" DESTINATION "include/bar")
+install(FILES "bar.hpp" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}")
 
 install(
     FILES "${project_config}" "${version_config}"
@@ -69,12 +88,12 @@ install(
 )
 
 install(
-    FILES "${CMAKE_CURRENT_BINARY_DIR}/bar_export.h"
-    DESTINATION "${include_install_dir}"
+    FILES "${export_header}"
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}"
 )
 
 install(
-    EXPORT "${targets_export_name}"
+    EXPORT "${TARGETS_EXPORT_NAME}"
     NAMESPACE "${namespace}"
     DESTINATION "${config_install_dir}"
 )

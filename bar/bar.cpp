@@ -1,13 +1,12 @@
+#include <bar/bar.hpp>
+
 #include <iostream> // std::cout
-#include <bar_export.h> // BAR_EXPORT
 
-void foo();
-void boo();
+#include <foo.hpp>
+#include <boo.hpp>
 
-std::string BAR_EXPORT bar() {
+void bar() {
   foo();
   boo();
-  std::string result("Hello from bar.framework!");
-  std::cout << result << std::endl;
-  return result;
+  std::cout << "Hello from bar" << std::endl;
 }
