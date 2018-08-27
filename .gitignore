@@ -1,3 +1,6 @@
 DynamicFrameworkUsageExample/Build
 DynamicFrameworkUsageExample/DynamicFrameworkUsageExample.xcodeproj/project.xcworkspace
 DynamicFrameworkUsageExample/DynamicFrameworkUsageExample.xcodeproj/xcuserdata
+_install
+_builds
+_logs
