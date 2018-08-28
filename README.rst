@@ -4,6 +4,8 @@
 * Application ``baz`` load dynamic framework ``bar``. Represent CMake (Xcode generator) user's code.
 * Native Xcode iOS project ``abc`` use ``bar.framework``. Represent native Xcode (no CMake) user's code.
 
+.. image:: docs/deps.png
+
 Requirements
 ------------
 
@@ -54,13 +56,37 @@ Adding framework to Xcode project
 If you want to test the adding of framework from scratch:
 
 * Remove ``bar.framework`` link
+
+.. image:: docs/01-remove_framework.png
+
 * Choose ``Remove Reference`` because file should not be removed from disk
+
+.. image:: docs/02-remove_reference.png
+
 * Select project and choose ``Add Files to "abc"...``
+
+.. image:: docs/03-add_files.png
+
 * Pick ``bar.framework`` from ``_install`` directory
+
+.. image:: docs/04-choose_framework.png
+
 * Add a command to copy the framework: ``Build Phases`` -> ``New Copy Files Phase`` -> Set ``Destination`` to ``Frameworks`` -> ``+``
+
+.. image:: docs/05-copy_files.png
+
 * Choose ``bar.framework`` and click ``Add``
+
+.. image:: docs/06-choose_framework.png
+
 * Verify that ``Code Sign On Copy`` is set
+
+.. image:: docs/07-code_sign_on_copy.png
+
 * Verify that ``Framework Search Paths`` is set to ``../_install`` (project relative location)
+
+.. image:: docs/08-search_path.png
+
 * Run ``abc``
 
 Headers
