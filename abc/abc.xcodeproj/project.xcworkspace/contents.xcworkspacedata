@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:../../_install/bar.framework"
+      name = "bar.framework">
+      <Group
+         location = "group:_CodeSignature"
+         name = "_CodeSignature">
+         <FileRef
+            location = "group:CodeResources">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:bar">
+      </FileRef>
+      <Group
+         location = "group:Headers"
+         name = "Headers">
+         <FileRef
+            location = "group:bar.hpp">
+         </FileRef>
+         <FileRef
+            location = "group:BAR_EXPORT.h">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:Info.plist">
+      </FileRef>
+   </Group>
    <FileRef
       location = "self:">
    </FileRef>
