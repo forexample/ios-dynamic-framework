@@ -26,7 +26,8 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
 
-  NSString* nsstring = [NSString stringWithUTF8String:bar().c_str()];
+  bar();
+  NSString* nsstring = [NSString stringWithUTF8String:"Dynamic framework"];
   [_button setTitle:nsstring forState:UIControlStateNormal];
 }
 

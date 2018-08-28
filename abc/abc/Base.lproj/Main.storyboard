@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,12 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="  Copyright (c) 2015 Ruslan Baratov. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="7dQ-gz-aOt">
-                                <rect key="frame" x="36" y="559" width="529" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1R-od-v0U">
                                 <rect key="frame" x="164.5" y="318.5" width="46" height="30"/>
                                 <state key="normal" title="Button">
@@ -40,11 +33,8 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="7dQ-gz-aOt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6mE-Au-bzn"/>
                             <constraint firstAttribute="centerX" secondItem="f1R-od-v0U" secondAttribute="centerX" id="He0-8p-0eY"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7dQ-gz-aOt" secondAttribute="bottom" constant="20" id="T80-Kh-pJo"/>
                             <constraint firstAttribute="centerY" secondItem="f1R-od-v0U" secondAttribute="centerY" id="p6q-aX-smn"/>
-                            <constraint firstItem="7dQ-gz-aOt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="wdy-hs-mfM"/>
                         </constraints>
                     </view>
                     <connections>
