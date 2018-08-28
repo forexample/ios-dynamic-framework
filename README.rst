@@ -1,7 +1,8 @@
 * Static libraries: ``foo``, ``boo``. Represent third party code.
-* Shared framework ``bar``. Depends on ``foo`` and ``boo``. Represent developer's code.
-* Application ``baz`` load shared framework ``bar``. Represent CMake + Xcode user's code.
-* Native Xcode iOS project ``DynamicFrameworkUsageExample`` use ``bar.framework``. Represent native Xcode (no CMake) user's code.
+* Dynamic framework ``bar``. Depends on ``foo`` and ``boo``. Represent developer's code.
+* Application ``roo`` from project ``bar`` can be used to test ``bar`` framework from the same CMake project.
+* Application ``baz`` load dynamic framework ``bar``. Represent CMake (Xcode generator) user's code.
+* Native Xcode iOS project ``abc`` use ``bar.framework``. Represent native Xcode (no CMake) user's code.
 
 Requirements
 ------------
@@ -18,27 +19,54 @@ Requirements
   > export PATH=`pwd`/polly/bin:$PATH
   > which polly.py
 
-Usage:
+Build framework for ``arm64`` architecture:
 
 .. code-block:: none
 
-  > ./jenkins.py --toolchain ios-8-2
-  > ls _framework/*/bar.framework
+  > ./jenkins.py --toolchain ios-11-4-dep-9-3-arm64
+
+  > ls _install/bar.framework
+  ...
+
+  > lipo -info _install/bar.framework/bar
+  Non-fat file: _install/bar.framework/bar is architecture: arm64
+
+Build universal 5 architectures framework:
+
+.. code-block:: none
+
+  > ./jenkins.py --toolchain ios-11-4-dep-9-3
+
+  > ls _install/bar.framework
+  ...
+
+  > lipo -info _install/bar.framework/bar
+  Architectures in the fat file: _install/bar.framework/bar are: i386 x86_64 armv7 armv7s arm64
 
 
 Adding framework to Xcode project
 ---------------------------------
 
-* Open your Xcode project
-* Remove old ``bar.framework`` link if it's left from previous build
-* Add framework to the project: "File" -> "Add Files to ..." -> *choose bar.framework*
-* Copy framework: "Build Phases" -> "New Copy Files Phase" -> Set "Destination" to "Frameworks" -> "+" -> *choose bar.framework* -> "Add"
-* Modify ``Search Paths -> Framework Search Paths`` to relative path accodring to toolchain name you're using. E.g. ``../_framework/ios-8-4`` if you are using ``--toolchain ios-8-4`` (if it's not set by Xcode automatically)
+* Build dynamic framework ``bar.framework`` first (!) See previous section.
+* Open ``abc`` Xcode project: ``File`` -> ``Open`` -> ``ios-dynamic-framework/abc/abc.xcodeproj``
+* Run ``abc`` target on iOS device/simulator
+
+If you want to test the adding of framework from scratch:
+
+* Remove ``bar.framework`` link
+* Choose ``Remove Reference`` because file should not be removed from disk
+* Select project and choose ``Add Files to "abc"...``
+* Pick ``bar.framework`` from ``_install`` directory
+* Add a command to copy the framework: ``Build Phases`` -> ``New Copy Files Phase`` -> Set ``Destination`` to ``Frameworks`` -> ``+``
+* Choose ``bar.framework`` and click ``Add``
+* Verify that ``Code Sign On Copy`` is set
+* Verify that ``Framework Search Paths`` is set to ``../_install`` (project relative location)
+* Run ``abc``
 
 Headers
 -------
 
-Project ``Bar`` installs ``bar.hpp`` header to
+Project ``bar`` installs ``bar.hpp`` header to
 ``<install-prefix>/include/bar/bar.hpp``. So ``bar.hpp`` can be included by C++
 directive ``#include <bar/bar.hpp>`` if used in a plain non-framework
 configuration. For frameworks location will be ``bar.framework/Headers/bar.hpp``
@@ -96,7 +124,7 @@ Explicit export (export only BAR_EXPORT, all other symbols are hidden):
   __Z3foov:
   __Z3boov:
 
-App Store Submittion
+App Store Submission
 --------------------
 
 Exclude simulator architectures (i386, x86_64) from framework by adding extra
