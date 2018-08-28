@@ -1,8 +1,8 @@
 #include <iostream> // std::cout
 
-void bar();
+#include <bar/bar.hpp>
 
 int main() {
-  std::cout << "hello from baz" << std::endl;
   bar();
+  std::cout << "Hello from baz" << std::endl;
 }
