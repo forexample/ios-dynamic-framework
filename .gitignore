@@ -4,3 +4,4 @@ abc/abc.xcodeproj/xcuserdata
 _install
 _builds
 _logs
+.DS_Store
