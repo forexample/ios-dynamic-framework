@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0F1DEA131B45F12300441C67 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1DEA121B45F12300441C67 /* main.m */; };
 		0F1DEA161B45F12300441C67 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1DEA151B45F12300441C67 /* AppDelegate.m */; };
-		0F1DEA191B45F12300441C67 /* DynamicFrameworkUsageExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F1DEA171B45F12300441C67 /* DynamicFrameworkUsageExample.xcdatamodeld */; };
+		0F1DEA191B45F12300441C67 /* abc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F1DEA171B45F12300441C67 /* abc.xcdatamodeld */; };
 		0F1DEA1C1B45F12300441C67 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0F1DEA1B1B45F12300441C67 /* ViewController.mm */; };
 		0F1DEA1F1B45F12300441C67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F1DEA1D1B45F12300441C67 /* Main.storyboard */; };
 		0F1DEA211B45F12300441C67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F1DEA201B45F12300441C67 /* Images.xcassets */; };
@@ -32,7 +32,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0F1DEA0D1B45F12300441C67 /* DynamicFrameworkUsageExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicFrameworkUsageExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F1DEA0D1B45F12300441C67 /* abc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = abc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F1DEA111B45F12300441C67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F1DEA121B45F12300441C67 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0F1DEA141B45F12300441C67 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				0FD25B1B1B46E45200EC64CA /* bar.framework */,
-				0F1DEA0F1B45F12300441C67 /* DynamicFrameworkUsageExample */,
+				0F1DEA0F1B45F12300441C67 /* abc */,
 				0F1DEA0E1B45F12300441C67 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,12 +70,12 @@
 		0F1DEA0E1B45F12300441C67 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0F1DEA0D1B45F12300441C67 /* DynamicFrameworkUsageExample.app */,
+				0F1DEA0D1B45F12300441C67 /* abc.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0F1DEA0F1B45F12300441C67 /* DynamicFrameworkUsageExample */ = {
+		0F1DEA0F1B45F12300441C67 /* abc */ = {
 			isa = PBXGroup;
 			children = (
 				0F1DEA141B45F12300441C67 /* AppDelegate.h */,
@@ -85,10 +85,10 @@
 				0F1DEA1D1B45F12300441C67 /* Main.storyboard */,
 				0F1DEA201B45F12300441C67 /* Images.xcassets */,
 				0F1DEA221B45F12300441C67 /* LaunchScreen.xib */,
-				0F1DEA171B45F12300441C67 /* DynamicFrameworkUsageExample.xcdatamodeld */,
+				0F1DEA171B45F12300441C67 /* abc.xcdatamodeld */,
 				0F1DEA101B45F12300441C67 /* Supporting Files */,
 			);
-			path = DynamicFrameworkUsageExample;
+			path = abc;
 			sourceTree = "<group>";
 		};
 		0F1DEA101B45F12300441C67 /* Supporting Files */ = {
@@ -103,9 +103,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0F1DEA0C1B45F12300441C67 /* DynamicFrameworkUsageExample */ = {
+		0F1DEA0C1B45F12300441C67 /* abc */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0F1DEA331B45F12300441C67 /* Build configuration list for PBXNativeTarget "DynamicFrameworkUsageExample" */;
+			buildConfigurationList = 0F1DEA331B45F12300441C67 /* Build configuration list for PBXNativeTarget "abc" */;
 			buildPhases = (
 				0F1DEA091B45F12300441C67 /* Sources */,
 				0F1DEA0A1B45F12300441C67 /* Frameworks */,
@@ -116,9 +116,9 @@
 			);
 			dependencies = (
 			);
-			name = DynamicFrameworkUsageExample;
+			name = abc;
 			productName = DynamicFrameworkUsageExample;
-			productReference = 0F1DEA0D1B45F12300441C67 /* DynamicFrameworkUsageExample.app */;
+			productReference = 0F1DEA0D1B45F12300441C67 /* abc.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -135,7 +135,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0F1DEA081B45F12300441C67 /* Build configuration list for PBXProject "DynamicFrameworkUsageExample" */;
+			buildConfigurationList = 0F1DEA081B45F12300441C67 /* Build configuration list for PBXProject "abc" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -148,7 +148,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0F1DEA0C1B45F12300441C67 /* DynamicFrameworkUsageExample */,
+				0F1DEA0C1B45F12300441C67 /* abc */,
 			);
 		};
 /* End PBXProject section */
@@ -174,7 +174,7 @@
 				0F1DEA161B45F12300441C67 /* AppDelegate.m in Sources */,
 				0F1DEA131B45F12300441C67 /* main.m in Sources */,
 				0F1DEA1C1B45F12300441C67 /* ViewController.mm in Sources */,
-				0F1DEA191B45F12300441C67 /* DynamicFrameworkUsageExample.xcdatamodeld in Sources */,
+				0F1DEA191B45F12300441C67 /* abc.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +311,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0F1DEA081B45F12300441C67 /* Build configuration list for PBXProject "DynamicFrameworkUsageExample" */ = {
+		0F1DEA081B45F12300441C67 /* Build configuration list for PBXProject "abc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0F1DEA311B45F12300441C67 /* Debug */,
@@ -320,7 +320,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0F1DEA331B45F12300441C67 /* Build configuration list for PBXNativeTarget "DynamicFrameworkUsageExample" */ = {
+		0F1DEA331B45F12300441C67 /* Build configuration list for PBXNativeTarget "abc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0F1DEA341B45F12300441C67 /* Debug */,
@@ -332,13 +332,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		0F1DEA171B45F12300441C67 /* DynamicFrameworkUsageExample.xcdatamodeld */ = {
+		0F1DEA171B45F12300441C67 /* abc.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				0F1DEA181B45F12300441C67 /* DynamicFrameworkUsageExample.xcdatamodel */,
 			);
 			currentVersion = 0F1DEA181B45F12300441C67 /* DynamicFrameworkUsageExample.xcdatamodel */;
-			path = DynamicFrameworkUsageExample.xcdatamodeld;
+			path = abc.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
