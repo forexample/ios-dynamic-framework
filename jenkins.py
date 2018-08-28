@@ -9,39 +9,33 @@ import sys
 parser = argparse.ArgumentParser(description="Testing script")
 parser.add_argument('--toolchain', help='Toolchain', required=True)
 parser.add_argument(
-    '--device',
-    action='store_true',
-    help='Build framework for device only'
-)
-parser.add_argument(
     '--export-file',
     action='store_true',
     help='Use extra file with exports symbols'
 )
+parser.add_argument(
+    '--static',
+    action='store_true',
+    help='Build static libraries'
+)
 cmd_args = parser.parse_args()
 
-cwd = os.getcwd()
+top_dir = os.getcwd()
+install_dir = os.path.join(top_dir, '_install')
 
-def do_call(args):
+def do_call(args, working_dir=top_dir):
+  os.chdir(working_dir)
   oneline = ''
   for i in args:
     oneline += ' "{}"'.format(i)
   print('[{}]>{}'.format(os.getcwd(), oneline))
   try:
     subprocess.check_call(args, env=os.environ)
+    os.chdir(top_dir)
   except subprocess.CalledProcessError as error:
     print(error)
     print(error.output)
     sys.exit(1)
-
-if os.path.exists('_install'):
-  shutil.rmtree('_install')
-
-if os.path.exists('_3rdParty'):
-  shutil.rmtree('_3rdParty')
-
-if os.path.exists('_framework'):
-  shutil.rmtree('_framework')
 
 if os.name == 'nt':
   do_call(['where', 'cmake'])
@@ -49,82 +43,73 @@ else:
   do_call(['which', 'cmake'])
 
 do_call(['cmake', '--version'])
-install_dir = os.path.join('_install')
-
-if os.path.exists('_builds'):
-  shutil.rmtree('_builds')
 
 do_call([
-    'build.py',
-    '--home',
-    'Foo',
-    '--toolchain',
-    cmd_args.toolchain,
-    '--verbose',
-    '--install',
-    '--config',
-    'Release'
-])
-
-if os.path.exists('_builds'):
-  shutil.rmtree('_builds')
+        'polly.py',
+        '--toolchain',
+        cmd_args.toolchain,
+        '--verbose',
+        '--install',
+        '--config',
+        'Release',
+        '--fwd',
+        'CMAKE_CONFIGURATION_TYPES=Release',
+        'CMAKE_INSTALL_PREFIX={}'.format(install_dir)
+    ],
+    working_dir='foo'
+)
 
 do_call([
-    'build.py',
-    '--home',
-    'Boo',
-    '--toolchain',
-    cmd_args.toolchain,
-    '--verbose',
-    '--install',
-    '--config',
-    'Release'
-])
-
-shutil.copytree('_install', '_3rdParty')
-shutil.rmtree('_install')
-
-if os.path.exists('_builds'):
-  shutil.rmtree('_builds')
-
-framework_opt = '--framework'
-if cmd_args.device:
-  framework_opt = '--framework-device'
+        'polly.py',
+        '--toolchain',
+        cmd_args.toolchain,
+        '--verbose',
+        '--install',
+        '--config',
+        'Release',
+        '--fwd',
+        'CMAKE_CONFIGURATION_TYPES=Release',
+        'CMAKE_INSTALL_PREFIX={}'.format(install_dir)
+    ],
+    working_dir='boo'
+)
 
 export_file = 'NO'
 if cmd_args.export_file:
   export_file = 'YES'
 
+shared_libs = 'YES'
+if cmd_args.static:
+  shared_libs = 'NO'
+
 do_call([
-    'build.py',
-    '--home',
-    'Bar',
-    '--toolchain',
-    cmd_args.toolchain,
-    '--verbose',
-    framework_opt,
-    '--config',
-    'Release',
-    '--fwd',
-    'CMAKE_PREFIX_PATH={}'.format(os.path.join(cwd, '_3rdParty', cmd_args.toolchain)),
-    'EXPORT_FILE={}'.format(export_file)
-])
+        'polly.py',
+        '--toolchain',
+        cmd_args.toolchain,
+        '--verbose',
+        '--install',
+        '--config',
+        'Release',
+        '--fwd',
+        'CMAKE_CONFIGURATION_TYPES=Release',
+        'BUILD_SHARED_LIBS={}'.format(shared_libs),
+        'EXPORT_FILE={}'.format(export_file),
+        'CMAKE_INSTALL_PREFIX={}'.format(install_dir)
+    ],
+    working_dir='bar'
+)
 
-if not cmd_args.toolchain.startswith('ios'): # TODO (fix iOS)
-  if os.path.exists('_builds'):
-    shutil.rmtree('_builds')
-
-  do_call([
-      'build.py',
-      '--home',
-      'Baz',
-      '--toolchain',
-      cmd_args.toolchain,
-      '--verbose',
-      '--config',
-      'Release',
-      '--fwd',
-      'FRAMEWORK_DIR={}'.format(
-          os.path.join(cwd, '_framework', cmd_args.toolchain)
-      )
-  ])
+do_call([
+        'polly.py',
+        '--toolchain',
+        cmd_args.toolchain,
+        '--verbose',
+        '--config',
+        'Release',
+        '--fwd',
+        'BUILD_SHARED_LIBS={}'.format(shared_libs),
+        'CMAKE_CONFIGURATION_TYPES=Release',
+        'CMAKE_PREFIX_PATH={}'.format(install_dir)
+    ],
+    working_dir='baz'
+)
