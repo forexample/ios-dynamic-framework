@@ -108,8 +108,9 @@ Export all symbols (default):
 
 .. code-block:: none
 
-  > ./jenkins.py --toolchain ios-8-2-arm64
-  > nm -gU _framework/ios-8-2-arm64/bar.framework/bar
+  > ./jenkins.py --toolchain ios-11-4-dep-9-3-arm64
+  
+  > nm -gU _install/bar.framework/bar
   ... T __Z3barv
   ... T __Z3boov # from static library boo
   ... T __Z3foov # from static library foo
@@ -121,10 +122,12 @@ Exported symbols can be listed explicitly in file using ``-exported_symbols_list
 
 .. code-block:: none
 
-  > cat Bar/libbar.exports
+  > cat bar/libbar.exports
   __Z3barv
-  > ./jenkins.py --toolchain ios-8-2 --export-file
-  > nm -gU _framework/ios-8-2/bar.framework/bar
+  
+  > ./jenkins.py --toolchain ios-11-4-dep-9-3-arm64 --export-file
+  
+  > nm -gU _install/bar.framework/bar
   ... T __Z3barv
 
 Toolchain
@@ -133,9 +136,10 @@ Toolchain
 Explicit export (export only BAR_EXPORT, all other symbols are hidden):
 
 .. code-block:: none
-
-  > ./jenkins.py --toolchain ios-8-2-arm64-hid
-  > nm -gU _framework/ios-8-2-arm64-hid/bar.framework/bar
+  
+  > ./jenkins.py --toolchain ios-10-1-arm64-dep-8-0-hid-sections
+  
+  > nm -gU _install/bar.framework/bar
   ... T __Z3barv # only bar visible
 
 .. note::
@@ -146,21 +150,20 @@ Explicit export (export only BAR_EXPORT, all other symbols are hidden):
 
 .. code-block:: none
 
-  > otool -vt _framework/ios-8-2-arm64-hid/bar.framework/bar | grep "^__Z3\(foo\|boo\)"
+  > otool -vt _install/bar.framework/bar | grep "^__Z3\(foo\|boo\)"
   __Z3foov:
   __Z3boov:
 
 App Store Submission
 --------------------
 
-Exclude simulator architectures (i386, x86_64) from framework by adding extra
-option ``--device`` (this will add ``--framework-device`` to ``build.py`` script) and
-open Xcode project:
+Use toolchain with device architectures only (arm64, armv7, armv7s).
+For example arm64 + armv7:
 
 .. code-block:: none
 
-  > ./jenkins.py --device --toolchain ios-8-2
-  > open DynamicFrameworkUsageExample/DynamicFrameworkUsageExample.xcodeproj
+  > ./jenkins.py --toolchain ios-11-4-dep-9-3-arm64-armv7
+  > open abc/abc.xcodeproj
 
 Build, archive and submit application.
 
