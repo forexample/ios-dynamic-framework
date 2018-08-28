@@ -287,7 +287,7 @@
 					"$(inherited)",
 					"../_framework/ios-8-2",
 				);
-				INFOPLIST_FILE = DynamicFrameworkUsageExample/Info.plist;
+				INFOPLIST_FILE = abc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -302,7 +302,7 @@
 					"$(inherited)",
 					"../_framework/ios-8-2",
 				);
-				INFOPLIST_FILE = DynamicFrameworkUsageExample/Info.plist;
+				INFOPLIST_FILE = abc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
