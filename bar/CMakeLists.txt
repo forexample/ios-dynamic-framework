@@ -45,6 +45,8 @@ if(ios_framework)
       INSTALL_NAME_DIR "@rpath//"
       BUILD_WITH_INSTALL_NAME_DIR YES
   )
+else()
+  set(bar_framework_location "")
 endif()
 
 add_executable(roo roo.cpp ${bar_framework_location})
