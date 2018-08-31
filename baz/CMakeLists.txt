@@ -8,8 +8,24 @@ if(IOS AND BUILD_SHARED_LIBS)
 endif()
 
 if(ios_dynamic_framework)
-  set(framework_dir "${CMAKE_PREFIX_PATH}")
-  set(bar_framework_location ${framework_dir}/bar.framework)
+  set(bar_framework_dir "${CMAKE_PREFIX_PATH}")
+  set(framework_name bar)
+  set(bar_framework_location ${bar_framework_dir}/${framework_name}.framework)
+
+  add_library(bar::bar INTERFACE IMPORTED)
+
+  # Workaround for the error:
+  #
+  #   Attempting to use @rpath without CMAKE_SHARED_LIBRARY_RUNTIME_C_FLAG being
+  #   set.  This could be because you are using a Mac OS X version less than 10.5
+  #   or because CMake's platform configuration is corrupt.
+  set_target_properties(
+      bar::bar
+      PROPERTIES
+      INTERFACE_COMPILE_OPTIONS "-F${bar_framework_dir}"
+      INTERFACE_LINK_LIBRARIES "-F${bar_framework_dir} -framework ${framework_name}"
+      INTERFACE_SOURCES "${bar_framework_location}"
+  )
 
   set_source_files_properties(
       "${bar_framework_location}"
@@ -18,28 +34,17 @@ if(ios_dynamic_framework)
       MACOSX_PACKAGE_LOCATION Frameworks
   )
 else()
+  find_package(bar CONFIG REQUIRED)
   set(bar_framework_location "")
 endif()
 
 add_executable(baz baz.cpp ${bar_framework_location})
+target_link_libraries(baz PUBLIC bar::bar)
 
 if(ios_dynamic_framework)
-  # {
-  # Workaround for the error:
-  #
-  #   Attempting to use @rpath without CMAKE_SHARED_LIBRARY_RUNTIME_C_FLAG being
-  #   set.  This could be because you are using a Mac OS X version less than 10.5
-  #   or because CMake's platform configuration is corrupt.
-  target_compile_options(baz PUBLIC "-F" "${framework_dir}")
-  target_link_libraries(baz PUBLIC "-F ${framework_dir} -framework bar")
-  # }
-
   set_target_properties(
       baz
       PROPERTIES
       XCODE_ATTRIBUTE_LD_RUNPATH_SEARCH_PATHS "@executable_path/Frameworks"
   )
-else()
-  find_package(bar CONFIG REQUIRED)
-  target_link_libraries(baz PUBLIC bar::bar)
 endif()
